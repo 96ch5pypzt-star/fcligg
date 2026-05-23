@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Mobile Dostluk Ligi</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a; /* Koyu tema */
+            color: #f8fafc;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #10b981; /* FC yeşili */
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #1e293b;
+            color: white;
+            border: 1px solid #10b981;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        button:hover, button.active {
+            background-color: #10b981;
+            color: #0f172a;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e293b;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        th {
+            background-color: #047857;
+            color: white;
+        }
+        .section { display: none; }
+        .section.active { display: block; }
+        .mvp-card {
+            background: linear-gradient(135deg, #fbbf24, #d97706);
+            color: black;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🏆 FC Mobile Dostluk Ligi</h1>
+    
+    <div class="menu">
+        <button class="active" onclick="showSection('puan')">Puan Durumu</button>
+        <button onclick="showSection('fikstur')">Fikstür</button>
+        <button onclick="showSection('gol')">Gol Krallığı</button>
+    </div>
+
+    <!-- PUAN DURUMU BÖLÜMÜ -->
+    <div id="puan" class="section active">
+        <table>
+            <tr>
+                <th>Sıra</th>
+                <th>Takım / Oyuncu</th>
+                <th>O</th>
+                <th>G</th>
+                <th>B</th>
+                <th>M</th>
+                <th>AV</th>
+                <th>Puan</th>
+            </tr>
+            <!-- Buradaki verileri kendinize göre değiştirebilirsin -->
+            <tr><td>1</td><td>Ali (Real Madrid)</td><td>5</td><td>4</td><td>1</td><td>0</td><td>+12</td><td><b>13</b></td></tr>
+            <tr><td>2</td><td>Veli (Man City)</td><td>5</td><td>3</td><td>1</td><td>1</td><td>+5</td><td><b>10</b></td></tr>
+            <tr><td>3</td><td>Ahmet (PSG)</td><td>5</td><td>1</td><td>2</td><td>2</td><td>-2</td><td><b>5</b></td></tr>
+        </table>
+        
+        <div class="mvp-card">
+            ⭐ Haftanın Oyuncusu: Ali (Harika geri dönüşleri ile!)
+        </div>
+    </div>
+
+    <!-- FİKSTÜR BÖLÜMÜ -->
+    <div id="fikstur" class="section">
+        <table>
+            <tr>
+                <th>Hafta</th>
+                <th>Ev Sahibi</th>
+                <th>Skor</th>
+                <th>Deplasman</th>
+            </tr>
+            <tr><td>1. Hafta</td><td>Ali</td><td>3 - 1</td><td>Ahmet</td></tr>
+            <tr><td>1. Hafta</td><td>Veli</td><td>2 - 2</td><td>Mehmet</td></tr>
+            <tr><td>2. Hafta</td><td>Ahmet</td><td>0 - 2</td><td>Veli</td></tr>
+        </table>
+    </div>
+
+    <!-- GOL KRALLIĞI BÖLÜMÜ -->
+    <div id="gol" class="section">
+        <table>
+            <tr>
+                <th>Sıra</th>
+                <th>Oyuncu (Oyun İçi)</th>
+                <th>Takım (Arkadaşın)</th>
+                <th>Gol Sayısı</th>
+            </tr>
+            <tr><td>1</td><td>Mbappé</td><td>Ahmet</td><td>8</td></tr>
+            <tr><td>2</td><td>Vinícius Jr.</td><td>Ali</td><td>6</td></tr>
+            <tr><td>3</td><td>Haaland</td><td>Veli</td><td>5</td></tr>
+        </table>
+    </div>
+
+</div>
+
+<script>
+    // Menü sekmeleri arasında geçiş yapmayı sağlayan kod
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        document.querySelectorAll('.menu button').forEach(el => el.classList.remove('active'));
+        
+        document.getElementById(sectionId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
+</script>
+
+</body>
+</html>
