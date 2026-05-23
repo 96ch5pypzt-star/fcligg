@@ -5,150 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FC Mobile Dostluk Ligi</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0f172a; /* Koyu tema */
-            color: #f8fafc;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #10b981; /* FC yeşili */
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .menu {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        button {
-            background-color: #1e293b;
-            color: white;
-            border: 1px solid #10b981;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        button:hover, button.active {
-            background-color: #10b981;
-            color: #0f172a;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 15px;
-            text-align: left;
-            border-bottom: 1px solid #334155;
-        }
-        th {
-            background-color: #047857;
-            color: white;
-        }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #0f172a; color: #f8fafc; margin: 0; padding: 15px; }
+        h1 { text-align: center; color: #10b981; text-transform: uppercase; margin-bottom: 5px; font-size: 1.8rem; }
+        .subtitle { text-align: center; color: #94a3b8; margin-bottom: 20px; font-size: 0.9rem; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .menu { display: flex; justify-content: center; gap: 5px; margin-bottom: 15px; }
+        button { background-color: #1e293b; color: white; border: 1px solid #10b981; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; font-size: 0.9rem; }
+        button.active { background-color: #10b981; color: #0f172a; }
+        table { width: 100%; border-collapse: collapse; background-color: #1e293b; border-radius: 8px; overflow: hidden; margin-bottom: 20px; font-size: 0.9rem; }
+        th, td { padding: 12px 10px; text-align: center; border-bottom: 1px solid #334155; }
+        th { background-color: #047857; color: white; }
+        td:nth-child(2) { text-align: left; font-weight: bold; }
         .section { display: none; }
         .section.active { display: block; }
-        .mvp-card {
-            background: linear-gradient(135deg, #fbbf24, #d97706);
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
+        .mac-satir { display: flex; justify-content: space-between; align-items: center; background: #1e293b; padding: 10px; margin-bottom: 8px; border-radius: 6px; border-left: 4px solid #10b981; font-size: 0.9rem; }
+        .skor { font-weight: bold; background: #0f172a; padding: 4px 10px; border-radius: 4px; color: #fbbf24; min-width: 35px; text-align: center; }
+        .tarih-etiket { font-size: 0.8rem; color: #10b981; font-weight: bold; margin-top: 15px; margin-bottom: 5px; padding-left: 5px; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>🏆 FC Mobile Dostluk Ligi</h1>
+    <h1>🏆 FC MOBILE LİGİ</h1>
+    <div class="subtitle">Canlı Güncel Puan Durumu ve Fikstür</div>
     
     <div class="menu">
         <button class="active" onclick="showSection('puan')">Puan Durumu</button>
-        <button onclick="showSection('fikstur')">Fikstür</button>
-        <button onclick="showSection('gol')">Gol Krallığı</button>
+        <button onclick="showSection('fikstur')">Maç Sonuçları</button>
     </div>
 
-    <!-- PUAN DURUMU BÖLÜMÜ -->
     <div id="puan" class="section active">
         <table>
-            <tr>
-                <th>Sıra</th>
-                <th>Takım / Oyuncu</th>
-                <th>O</th>
-                <th>G</th>
-                <th>B</th>
-                <th>M</th>
-                <th>AV</th>
-                <th>Puan</th>
-            </tr>
-            <!-- Buradaki verileri kendinize göre değiştirebilirsin -->
-            <tr><td>1</td><td>Ali (Real Madrid)</td><td>5</td><td>4</td><td>1</td><td>0</td><td>+12</td><td><b>13</b></td></tr>
-            <tr><td>2</td><td>Veli (Man City)</td><td>5</td><td>3</td><td>1</td><td>1</td><td>+5</td><td><b>10</b></td></tr>
-            <tr><td>3</td><td>Ahmet (PSG)</td><td>5</td><td>1</td><td>2</td><td>2</td><td>-2</td><td><b>5</b></td></tr>
+            <thead>
+                <tr>
+                    <th>S</th>
+                    <th>Takım</th>
+                    <th>O</th>
+                    <th>G</th>
+                    <th>B</th>
+                    <th>M</th>
+                    <th>AV</th>
+                    <th>P</th>
+                </tr>
+            </thead>
+            <tbody id="puan-tablo-vucut">
+                </tbody>
         </table>
-        
-        <div class="mvp-card">
-            ⭐ Haftanın Oyuncusu: Ali (Harika geri dönüşleri ile!)
-        </div>
     </div>
 
-    <!-- FİKSTÜR BÖLÜMÜ -->
     <div id="fikstur" class="section">
-        <table>
-            <tr>
-                <th>Hafta</th>
-                <th>Ev Sahibi</th>
-                <th>Skor</th>
-                <th>Deplasman</th>
-            </tr>
-            <tr><td>1. Hafta</td><td>Ali</td><td>3 - 1</td><td>Ahmet</td></tr>
-            <tr><td>1. Hafta</td><td>Veli</td><td>2 - 2</td><td>Mehmet</td></tr>
-            <tr><td>2. Hafta</td><td>Ahmet</td><td>0 - 2</td><td>Veli</td></tr>
-        </table>
+        <div id="maclar-listesi">
+            </div>
     </div>
-
-    <!-- GOL KRALLIĞI BÖLÜMÜ -->
-    <div id="gol" class="section">
-        <table>
-            <tr>
-                <th>Sıra</th>
-                <th>Oyuncu (Oyun İçi)</th>
-                <th>Takım (Arkadaşın)</th>
-                <th>Gol Sayısı</th>
-            </tr>
-            <tr><td>1</td><td>Mbappé</td><td>Ahmet</td><td>8</td></tr>
-            <tr><td>2</td><td>Vinícius Jr.</td><td>Ali</td><td>6</td></tr>
-            <tr><td>3</td><td>Haaland</td><td>Veli</td><td>5</td></tr>
-        </table>
-    </div>
-
 </div>
 
 <script>
-    // Menü sekmeleri arasında geçiş yapmayı sağlayan kod
+    // ==========================================
+    // SADECE BU ARALIKTAKİ MAÇLARI DÜZENLEYECEKSİN
+    // ==========================================
+    const maclar = [
+        // ŞABLON: { tarih: "GÜN ADI", ev: "TAKIM", deplasman: "TAKIM", evSkor: SKOR, depSkor: SKOR },
+        
+        // --- 1. GÜN ÖRNEK MAÇLARI (Skorları kendinize göre değiştirin) ---
+        { tarih: "1. GÜN", ev: "akin07", deplasman: "koltukreis", evSkor: 3, depSkor: 1 },
+        { tarih: "1. GÜN", ev: "misterio", deplasman: "watchandleran", evSkor: 2, depSkor: 2 },
+        { tarih: "1. GÜN", ev: "akin07", deplasman: "misterio", evSkor: 0, depSkor: 2 },
+        { tarih: "1. GÜN", ev: "koltukreis", deplasman: "watchandleran", evSkor: 1, depSkor: 4 },
+        { tarih: "1. GÜN", ev: "akin07", deplasman: "watchandleran", evSkor: 2, depSkor: 1 },
+        { tarih: "1. GÜN", ev: "koltukreis", deplasman: "misterio", evSkor: 0, depSkor: 0 },
+
+        // --- 2. GÜN MAÇLARI BAŞLADIĞINDA ALTTAKİ SATIRLARI AKTİF EDEBİLİRSİN ---
+        // { tarih: "2. GÜN", ev: "akin07", deplasman: "koltukreis", evSkor: 0, depSkor: 0 },
+        
+    ];
+    // ==========================================
+
+    const takimlar = ["akin07", "koltukreis", "misterio", "watchandleran"];
+
+    function hesaplaLig() {
+        let istatistikler = {};
+        takimlar.forEach(t => {
+            istatistikler[t] = { isim: t, o: 0, g: 0, b: 0, m: 0, ag: 0, yg: 0, av: 0, p: 0 };
+        });
+
+        maclar.forEach(m => {
+            let t1 = istatistikler[m.ev];
+            let t2 = istatistikler[m.deplasman];
+            
+            if(t1 && t2) {
+                t1.o++; t2.o++;
+                t1.ag += m.evSkor; t1.yg += m.depSkor;
+                t2.ag += m.depSkor; t2.yg += m.evSkor;
+
+                if(m.evSkor > m.depSkor) { t1.g++; t1.p += 3; t2.m++; }
+                else if(m.depSkor > m.evSkor) { t2.g++; t2.p += 3; t1.m++; }
+                else { t1.b++; t2.b++; t1.p += 1; t2.p += 1; }
+
+                t1.av = t1.ag - t1.yg;
+                t2.av = t2.ag - t2.yg;
+            }
+        });
+
+        let siralama = Object.values(istatistikler).sort((a, b) => {
+            if(b.p !== a.p) return b.p - a.p;
+            if(b.av !== a.av) return b.av - a.av;
+            return b.ag - a.ag;
+        });
+
+        let tabloHTML = "";
+        siralama.forEach((t, i) => {
+            tabloHTML += `<tr>
+                <td>${i+1}</td>
+                <td>${t.isim}</td>
+                <td>${t.o}</td>
+                <td>${t.g}</td>
+                <td>${t.b}</td>
+                <td>${t.m}</td>
+                <td>${t.av > 0 ? '+' + t.av : t.av}</td>
+                <td><b>${t.p}</b></td>
+            </tr>`;
+        });
+        document.getElementById("puan-tablo-vucut").innerHTML = tabloHTML;
+
+        let fiksturHTML = "";
+        let sonTarih = "";
+        maclar.forEach(m => {
+            if(m.tarih !== sonTarih) {
+                fiksturHTML += `<div class="tarih-etiket">📅 ${m.tarih}</div>`;
+                sonTarih = m.tarih;
+            }
+            fiksturHTML += `<div class="mac-satir">
+                <span style="flex:1; text-align:right; font-weight:bold;">${m.ev}</span>
+                <span class="skor">${m.evSkor} - ${m.depSkor}</span>
+                <span style="flex:1; text-align:left; font-weight:bold; padding-left:10px;">${m.deplasman}</span>
+            </div>`;
+        });
+        document.getElementById("maclar-listesi").innerHTML = fiksturHTML;
+    }
+
     function showSection(sectionId) {
         document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.menu button').forEach(el => el.classList.remove('active'));
-        
         document.getElementById(sectionId).classList.add('active');
         event.currentTarget.classList.add('active');
     }
-</script>
 
+    window.onload = hesaplaLig;
+</script>
 </body>
 </html>
